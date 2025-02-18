@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .content {
+            max-width: 600px;
+            text-align: center;
+            color: #333;
+        }
+
+        .text-line {
+            margin: 1.2rem 0;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .text-line:nth-child(1) { animation-delay: 0.2s; }
+        .text-line:nth-child(2) { animation-delay: 0.4s; }
+        .text-line:nth-child(3) { animation-delay: 0.6s; }
+        .text-line:nth-child(4) { animation-delay: 0.8s; }
+        .text-line:nth-child(5) { animation-delay: 1.0s; }
+        .text-line:nth-child(6) { animation-delay: 1.2s; }
+        .text-line:nth-child(7) { animation-delay: 1.4s; }
+
+        @media (max-width: 480px) {
+            .text-line {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="text-line">hello there</div>
+        <div class="text-line">I'm glad that you notice my website,</div>
+        <div class="text-line">but I'm sorry that it isn't available now........</div>
+        <div class="text-line">(actually I haven't completely prepared it)</div>
+        <div class="text-line">whatever, it's my pleasure that you can visit my website,</div>
+        <div class="text-line">I hope you can come back and take a look after a while. (really)</div>
+        <div class="text-line">maybe it'll be ready by then.</div>
+    </div>
+</body>
+</html>
