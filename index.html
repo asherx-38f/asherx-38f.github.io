@@ -1,227 +1,694 @@
-{
-  "1": {
-    "title": "古代传说",
-    "theme": "default",
-    "startPage": "p1",
-    "pages": {
-      "p1": {
-        "type": "text",
-        "title": "神秘的古籍",
-        "content": "<p>你在一个古老的图书馆里发现了一本布满灰尘的古籍。当你翻开它的第一页时，一道神秘的光芒闪过，你发现自己来到了一个陌生而神秘的地方。</p><p>这里的建筑风格十分奇特，墙壁上刻满了古老的文字和符号。你注意到前方有两条路，一条通向一座宏伟的宫殿，另一条通向一片黑暗的森林。</p>",
-        "image": "/images/ancient-library.jpg",
-        "nextPage": "p2"
-      },
-      "p2": {
-        "type": "choice",
-        "title": "选择你的道路",
-        "content": "<p>你站在两条路的交叉口，必须做出选择。</p><p>宫殿看起来富丽堂皇，可能藏有珍贵的宝藏和知识，但也可能有危险的守卫。森林则显得神秘而危险，但也许能找到指引你回家的线索。</p>",
-        "image": "/images/path-choice.jpg",
-        "choices": [
-          {
-            "text": "前往宏伟的宫殿",
-            "nextPage": "p3"
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>故事解密平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#1e40af',
+            accent: '#f97316',
+            dark: '#0f172a',
+            light: '#f8fafc'
           },
-          {
-            "text": "探索黑暗的森林",
-            "nextPage": "p4"
-          }
-        ]
-      },
-      "p3": {
-        "type": "text",
-        "title": "宫殿的秘密",
-        "content": "<p>你小心翼翼地走进宫殿，里面金碧辉煌，但空无一人。墙壁上挂满了精美的壁画，描绘着古代的战争和神秘的仪式。</p><p>在宫殿的深处，你发现了一个巨大的宝箱。当你打开它时，一道耀眼的光芒闪过，你获得了一件神秘的宝物。</p><p>突然，地面开始震动，宫殿开始崩塌。你意识到这个宝物可能触发了某种保护机制。</p>",
-        "image": "/images/palace.jpg",
-        "nextPage": "p5"
-      },
-      "p4": {
-        "type": "text",
-        "title": "森林的低语",
-        "content": "<p>你走进森林，树木高大而茂密，阳光几乎无法穿透。你能听到远处传来奇怪的声音，但无法确定它们的来源。</p><p>突然，一只巨大的白鹿出现在你面前。它的眼睛闪烁着智慧的光芒，似乎在引导你向前。你决定跟随它。</p><p>白鹿带你来到了一个小湖边，湖边有一块古老的石碑。当你触摸石碑时，一股能量涌入你的身体，你获得了古代的知识。</p>",
-        "image": "/images/forest.jpg",
-        "nextPage": "p6"
-      },
-      "p5": {
-        "type": "return",
-        "title": "逃离崩塌的宫殿",
-        "content": "<p>你必须尽快逃离这座正在崩塌的宫殿。你紧紧握住宝物，寻找出口。</p><p>在一片混乱中，你找到了一个秘密通道。沿着通道跑了一段时间后，你发现自己回到了图书馆。</p><p>你看了看手中的宝物，决定将它妥善保管，也许有一天它会派上用场。</p>",
-        "image": "/images/escape.jpg"
-      },
-      "p6": {
-        "type": "return",
-        "title": "回到现实",
-        "content": "<p>获得古代知识后，你感到一阵眩晕。当你恢复意识时，发现自己已经回到了图书馆。</p><p>你看了看手中的古籍，发现它的内容已经发生了变化。你意识到这次经历改变了你，也改变了这本书。</p><p>你决定继续研究这本书，探索更多的古代秘密。</p>",
-        "image": "/images/return.jpg"
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif']
+          },
+        },
       }
     }
-  },
-  "2": {
-    "title": "未来科技",
-    "theme": "purple",
-    "startPage": "p1",
-    "pages": {
-      "p1": {
-        "type": "text",
-        "title": "2077年的世界",
-        "content": "<p>你是一名时间旅行者，来自2025年。你的任务是调查2077年的未来世界，寻找解决当前全球危机的方法。</p><p>当你到达时，你发现这个世界与你想象的完全不同。高科技与环境污染并存，巨型企业控制着一切，而普通民众则生活在贫困和压迫之中。</p>",
-        "image": "/images/future-city.jpg",
-        "nextPage": "p2"
-      },
-      "p2": {
-        "type": "choice",
-        "title": "选择你的立场",
-        "content": "<p>你必须决定是与反抗组织合作，试图推翻企业统治，还是与企业合作，帮助他们维持现状。</p><p>你的选择将决定这个世界的未来，也可能影响你回到自己时代的能力。</p>",
-        "image": "/images/future-choice.jpg",
-        "choices": [
-          {
-            "text": "加入反抗组织",
-            "nextPage": "p3"
-          },
-          {
-            "text": "与企业合作",
-            "nextPage": "p4"
-          }
-        ]
-      },
-      "p3": {
-        "type": "text",
-        "title": "反抗的代价",
-        "content": "<p>你加入了反抗组织，很快就成为了他们的重要成员。你参与了多次针对企业设施的袭击，成功地破坏了他们的一些计划。</p><p>然而，企业的反击也越来越激烈。他们派出了精英部队来追捕你和你的同伴。在一次行动中，你被俘虏了。</p><p>你被带到了企业的总部，面临着严酷的审讯。你必须决定是否透露反抗组织的秘密。</p>",
-        "image": "/images/resistance.jpg",
-        "nextPage": "p5"
-      },
-      "p4": {
-        "type": "text",
-        "title": "权力的诱惑",
-        "content": "<p>你决定与企业合作，很快就获得了他们的信任。你被赋予了重要的职位，能够接触到企业的核心机密。</p><p>随着时间的推移，你开始意识到企业的真正目的：他们不仅想要控制这个世界，还计划通过时间旅行来改变过去，确保他们的统治永远延续。</p><p>你必须决定是继续与他们合作，还是背叛他们，揭露他们的阴谋。</p>",
-        "image": "/images/corporation.jpg",
-        "nextPage": "p6"
-      },
-      "p5": {
-        "type": "return",
-        "title": "自由的曙光",
-        "content": "<p>你拒绝透露任何信息，坚守着自己的信念。在被囚禁期间，你的同伴们策划了一次大胆的营救行动。</p><p>经过激烈的战斗，你们成功地逃离了企业总部。在逃亡过程中，你发现了企业的一个致命弱点。</p><p>利用这个弱点，反抗组织发动了最后的攻击，成功地推翻了企业的统治。世界恢复了和平，你也找到了回到自己时代的方法。</p>",
-        "image": "/images/freedom.jpg"
-      },
-      "p6": {
-        "type": "return",
-        "title": "改变历史",
-        "content": "<p>你决定背叛企业，揭露他们的阴谋。你偷走了他们的时间旅行装置，并将其交给了反抗组织。</p><p>有了这个装置，反抗组织能够阻止企业改变过去的计划。在一场激烈的决战中，你们成功地摧毁了企业的时间旅行设施。</p><p>世界恢复了和平，但你知道，历史已经被改变了。你决定留在这个未来，帮助重建这个世界。</p>",
-        "image": "/images/change-history.jpg"
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .bg-blur {
+        backdrop-filter: blur(8px);
+      }
+      .transition-transform {
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+      .scale-hover {
+        @apply hover:scale-105 transition-all duration-300;
+      }
+      .button-style {
+        @apply bg-primary hover:bg-secondary text-white font-bold py-4 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50;
+      }
+      .story-card {
+        @apply bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-6 transition-all duration-500 transform hover:shadow-2xl;
       }
     }
-  },
-  "3": {
-    "title": "自然奥秘",
-    "theme": "green",
-    "startPage": "p1",
-    "pages": {
-      "p1": {
-        "type": "text",
-        "title": "雨林探险",
-        "content": "<p>你是一名生物学家，正在探索地球上最后一片未被开发的热带雨林。这里充满了各种奇特的植物和动物，其中一些可能具有重要的药用价值。</p><p>在一次探险中，你发现了一种从未见过的植物。它的花朵发出柔和的光芒，叶子上有奇特的纹路。当你触摸它时，一股暖流涌入你的身体，你感到精力充沛。</p>",
-        "image": "/images/rainforest.jpg",
-        "nextPage": "p2"
+  </style>
+</head>
+<body class="bg-gradient-to-br from-dark to-secondary min-h-screen font-sans text-light overflow-x-hidden">
+  <!-- 加载页面 -->
+  <div id="loading-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-dark/95">
+    <div class="text-center">
+      <div class="inline-block h-16 w-16 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+      <p class="mt-4 text-xl text-light">加载中...</p>
+    </div>
+  </div>
+
+  <!-- 密码输入页面 -->
+  <div id="password-page" class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-dark/70 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-primary/20">
+      <div class="text-center mb-8">
+        <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-primary mb-2 text-shadow">故事解密</h1>
+        <p class="text-light/80">输入六位数字密码进入</p>
+      </div>
+      
+      <form id="password-form" class="space-y-6">
+        <div class="grid grid-cols-6 gap-4">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="0">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="1">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="2">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="3">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="4">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="5">
+        </div>
+        
+        <button type="submit" class="button-style w-full flex justify-center items-center">
+          <span>进入故事</span>
+          <i class="fa fa-arrow-right ml-2"></i>
+        </button>
+      </form>
+      
+      <div class="mt-8 text-center text-light/60 text-sm">
+        <p>提示：密码与今天的日期有关</p>
+      </div>
+      
+      <!-- 主题选择器 -->
+      <div class="mt-8">
+        <p class="text-light/70 mb-3">选择主题:</p>
+        <div class="flex justify-center space-x-3">
+          <button class="theme-btn w-8 h-8 rounded-full bg-blue-600 border-2 border-white/50" data-theme="default"></button>
+          <button class="theme-btn w-8 h-8 rounded-full bg-green-600 border-2 border-white/50" data-theme="green"></button>
+          <button class="theme-btn w-8 h-8 rounded-full bg-purple-600 border-2 border-white/50" data-theme="purple"></button>
+          <button class="theme-btn w-8 h-8 rounded-full bg-red-600 border-2 border-white/50" data-theme="red"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 一级页面 -->
+  <div id="main-page" class="min-h-screen flex flex-col items-center justify-center p-4 hidden">
+    <div class="max-w-6xl w-full text-center mb-12">
+      <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-bold text-primary mb-4 text-shadow animate-pulse">选择你的故事</h1>
+      <p class="text-light/80 text-lg max-w-3xl mx-auto">你面前有四个方向，每个方向都有一个独特的故事等待你去探索。选择一个方向开始你的冒险吧。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl w-full">
+      <button class="story-option button-style flex flex-col items-center" data-story="1">
+        <i class="fa fa-book text-4xl mb-4"></i>
+        <span class="text-xl">古代传说</span>
+      </button>
+      
+      <button class="story-option button-style flex flex-col items-center" data-story="2">
+        <i class="fa fa-rocket text-4xl mb-4"></i>
+        <span class="text-xl">未来科技</span>
+      </button>
+      
+      <button class="story-option button-style flex flex-col items-center" data-story="3">
+        <i class="fa fa-tree text-4xl mb-4"></i>
+        <span class="text-xl">自然奥秘</span>
+      </button>
+      
+      <button class="story-option button-style flex flex-col items-center" data-story="4">
+        <i class="fa fa-users text-4xl mb-4"></i>
+        <span class="text-xl">人文历史</span>
+      </button>
+    </div>
+    
+    <div class="mt-12">
+      <button id="reset-button" class="bg-dark/50 hover:bg-dark/70 text-light border border-light/30 py-3 px-6 rounded-lg transition-all duration-300">
+        <i class="fa fa-refresh mr-2"></i>重新输入密码
+      </button>
+    </div>
+  </div>
+
+  <!-- 故事页面容器 -->
+  <div id="story-container" class="min-h-screen flex items-center justify-center p-4 hidden">
+    <div class="max-w-4xl w-full">
+      <div id="story-content" class="story-card">
+        <!-- 故事内容将通过JavaScript动态加载 -->
+      </div>
+      
+      <div class="mt-8 flex justify-between">
+        <button id="back-button" class="bg-dark/50 hover:bg-dark/70 text-light border border-light/30 py-3 px-6 rounded-lg transition-all duration-300 hidden">
+          <i class="fa fa-arrow-left mr-2"></i>返回上一页
+        </button>
+        
+        <button id="return-main-button" class="bg-dark/50 hover:bg-dark/70 text-light border border-light/30 py-3 px-6 rounded-lg transition-all duration-300 hidden">
+          <i class="fa fa-home mr-2"></i>返回主页面
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 全局变量
+    let currentStory = null;
+    let currentPage = null;
+    let storyData = null;
+    let history = [];
+    let currentTheme = 'default';
+    
+    // DOM元素
+    const loadingScreen = document.getElementById('loading-screen');
+    const passwordPage = document.getElementById('password-page');
+    const mainPage = document.getElementById('main-page');
+    const storyContainer = document.getElementById('story-container');
+    const storyContent = document.getElementById('story-content');
+    const passwordForm = document.getElementById('password-form');
+    const passwordInputs = document.querySelectorAll('.password-input');
+    const storyOptions = document.querySelectorAll('.story-option');
+    const resetButton = document.getElementById('reset-button');
+    const backButton = document.getElementById('back-button');
+    const returnMainButton = document.getElementById('return-main-button');
+    const themeButtons = document.querySelectorAll('.theme-btn');
+    
+    // 主题配置
+    const themes = {
+      'default': {
+        primary: '#3b82f6',
+        secondary: '#1e40af',
+        accent: '#f97316',
+        dark: '#0f172a',
+        light: '#f8fafc'
       },
-      "p2": {
-        "type": "choice",
-        "title": "保护还是研究",
-        "content": "<p>你必须决定是将这种植物的存在报告给科学界，还是保守这个秘密，以保护它免受可能的开发和破坏。</p><p>你的选择将影响这种植物的未来，也可能影响整个生态系统。</p>",
-        "image": "/images/plant.jpg",
-        "choices": [
-          {
-            "text": "报告科学界",
-            "nextPage": "p3"
-          },
-          {
-            "text": "保守秘密",
-            "nextPage": "p4"
-          }
-        ]
+      'green': {
+        primary: '#10b981',
+        secondary: '#047857',
+        accent: '#f97316',
+        dark: '#0f172a',
+        light: '#f8fafc'
       },
-      "p3": {
-        "type": "text",
-        "title": "科学与贪婪",
-        "content": "<p>你决定将这种植物的存在报告给科学界。很快，一支由顶尖科学家组成的团队来到了雨林，开始对这种植物进行研究。</p><p>起初，一切都很顺利。科学家们发现这种植物确实具有神奇的药用价值，可以治疗多种疾病。然而，消息很快泄露出去，贪婪的商人开始涌入雨林，试图获取这种植物。</p><p>很快，这种植物就面临着灭绝的危险。你意识到，你的决定可能带来了意想不到的后果。</p>",
-        "image": "/images/science.jpg",
-        "nextPage": "p5"
+      'purple': {
+        primary: '#8b5cf6',
+        secondary: '#5b21b6',
+        accent: '#f97316',
+        dark: '#0f172a',
+        light: '#f8fafc'
       },
-      "p4": {
-        "type": "text",
-        "title": "与自然的和谐",
-        "content": "<p>你决定保守这个秘密，只与当地的原住民分享这个发现。他们已经与这片雨林和谐共处了数百年，知道如何保护它的资源。</p><p>在原住民的帮助下，你学会了如何与这种植物和平共处，如何利用它的药用价值而不破坏它。你也开始了解到他们的文化和信仰，这些都与自然紧密相连。</p><p>随着时间的推移，你意识到，真正的智慧不在于征服自然，而在于与它和谐相处。</p>",
-        "image": "/images/nature.jpg",
-        "nextPage": "p6"
-      },
-      "p5": {
-        "type": "return",
-        "title": "救赎",
-        "content": "<p>你深感愧疚，决定采取行动来拯救这种濒危植物。你联合了环保组织和原住民，共同建立了一个保护区，保护这种植物和整个生态系统。</p><p>经过多年的努力，这种植物的数量逐渐恢复，雨林也重新焕发生机。你意识到，科学和保护并不矛盾，关键是要有正确的动机和方法。</p><p>你带着这个宝贵的经验回到了城市，决心用你的知识和影响力来保护更多的自然奇观。</p>",
-        "image": "/images/redemption.jpg"
-      },
-      "p6": {
-        "type": "return",
-        "title": "守护者",
-        "content": "<p>你成为了这种神秘植物和整个雨林的守护者。你与原住民一起生活，学习他们的传统知识，共同保护这片土地。</p><p>随着时间的推移，你的故事传开了，越来越多的人开始关注自然保护。你建立了一个教育中心，向年轻一代传授保护自然的重要性。</p><p>你知道，真正的财富不在于物质的积累，而在于与自然和谐相处。你选择留在这片雨林，用你的一生来守护这份珍贵的自然遗产。</p>",
-        "image": "/images/guardian.jpg"
+      'red': {
+        primary: '#ef4444',
+        secondary: '#b91c1c',
+        accent: '#f97316',
+        dark: '#0f172a',
+        light: '#f8fafc'
+      }
+    };
+    
+    // 应用主题
+    function applyTheme(theme) {
+      currentTheme = theme;
+      const themeColors = themes[theme];
+      
+      // 应用主题颜色
+      document.documentElement.style.setProperty('--primary-color', themeColors.primary);
+      document.documentElement.style.setProperty('--secondary-color', themeColors.secondary);
+      document.documentElement.style.setProperty('--accent-color', themeColors.accent);
+      document.documentElement.style.setProperty('--dark-color', themeColors.dark);
+      document.documentElement.style.setProperty('--light-color', themeColors.light);
+      
+      // 更新主题按钮状态
+      themeButtons.forEach(btn => {
+        if (btn.getAttribute('data-theme') === theme) {
+          btn.classList.add('ring-2', 'ring-white', 'ring-offset-2', 'ring-offset-dark');
+        } else {
+          btn.classList.remove('ring-2', 'ring-white', 'ring-offset-2', 'ring-offset-dark');
+        }
+      });
+      
+      // 保存主题偏好
+      localStorage.setItem('storyTheme', theme);
+    }
+    
+    // 初始化主题
+    function initTheme() {
+      const savedTheme = localStorage.getItem('storyTheme');
+      if (savedTheme && themes[savedTheme]) {
+        applyTheme(savedTheme);
+      } else {
+        applyTheme('default');
       }
     }
-  },
-  "4": {
-    "title": "人文历史",
-    "theme": "red",
-    "startPage": "p1",
-    "pages": {
-      "p1": {
-        "type": "text",
-        "title": "历史的回响",
-        "content": "<p>你是一位历史学家，专门研究古代文明。一次偶然的机会，你发现了一个神秘的遗迹，里面保存着大量的古代文物和文献。</p><p>当你开始研究这些文物时，你发现了一些令人震惊的事实：这些文物揭示了一个被历史遗忘的文明，他们拥有高度发达的科技和文化。</p>",
-        "image": "/images/history.jpg",
-        "nextPage": "p2"
-      },
-      "p2": {
-        "type": "choice",
-        "title": "真相与责任",
-        "content": "<p>你发现这个古代文明的消失与一个重大的历史事件有关，而这个事件的真相一直被隐瞒。</p><p>你必须决定是公开这些发现，挑战现有的历史认知，还是保持沉默，避免可能的争议和混乱。</p>",
-        "image": "/images/artifact.jpg",
-        "choices": [
-          {
-            "text": "公开真相",
-            "nextPage": "p3"
-          },
-          {
-            "text": "保持沉默",
-            "nextPage": "p4"
-          }
-        ]
-      },
-      "p3": {
-        "type": "text",
-        "title": "历史的重构",
-        "content": "<p>你决定公开你的发现，引起了学术界和公众的广泛关注。你的研究挑战了传统的历史观点，引发了激烈的讨论和辩论。</p><p>随着更多的证据被发现，人们开始重新审视历史，修正过去的错误。你成为了一位备受尊敬的历史学家，你的工作改变了人们对古代文明的理解。</p><p>然而，你的发现也引起了一些人的不满和反对。他们试图抹黑你的声誉，阻止真相的传播。</p>",
-        "image": "/images/research.jpg",
-        "nextPage": "p5"
-      },
-      "p4": {
-        "type": "text",
-        "title": "沉默的代价",
-        "content": "<p>你决定保持沉默，将这些发现深埋心底。你继续过着平凡的生活，但内心深处始终感到不安。</p><p>几年后，另一位历史学家独立发现了同样的真相，并公之于众。这个发现震动了整个学术界，引发了对历史的重新评估。</p><p>你感到后悔和自责，因为你本可以成为第一个揭示真相的人，却因为害怕争议而选择了沉默。</p>",
-        "image": "/images/silence.jpg",
-        "nextPage": "p6"
-      },
-      "p5": {
-        "type": "return",
-        "title": "历史的守护者",
-        "content": "<p>尽管面临压力和反对，你坚持自己的研究，继续揭示历史的真相。你的勇气和坚持赢得了越来越多人的尊重和支持。</p><p>随着时间的推移，你的理论被广泛接受，历史教科书被重新编写。人们开始以新的视角看待过去，从中吸取教训。</p><p>你意识到，作为历史学家，你的责任不仅仅是记录历史，更重要的是揭示真相，确保历史不会被遗忘或歪曲。</p>",
-        "image": "/images/historian.jpg"
-      },
-      "p6": {
-        "type": "return",
-        "title": "反思",
-        "content": "<p>你对自己的决定感到深深的遗憾。你意识到，害怕争议和麻烦不应该成为隐瞒真相的理由。</p><p>你决定弥补过去的错误，公开支持那位揭示真相的历史学家，并利用你的影响力来推广历史研究和教育。</p><p>虽然你错过了成为第一个发现者的机会，但你仍然可以成为真相的传播者和历史的守护者。你从这次经历中学到了一个宝贵的教训：真相永远值得追求，无论代价如何。</p>",
-        "image": "/images/reflection.jpg"
+    
+    // 密码验证
+    passwordInputs.forEach((input, index) => {
+      input.addEventListener('input', (e) => {
+        // 只允许数字输入
+        if (!/^\d$/.test(e.data) && e.data !== null) {
+          input.value = '';
+          return;
+        }
+        
+        // 自动跳到下一个输入框
+        if (input.value && index < passwordInputs.length - 1) {
+          passwordInputs[index + 1].focus();
+        }
+      });
+      
+      // 处理退格键
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value === '' && index > 0) {
+          passwordInputs[index - 1].focus();
+        }
+      });
+    });
+    
+    passwordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // 获取输入的密码
+      const password = Array.from(passwordInputs)
+        .map(input => input.value)
+        .join('');
+      
+      // 验证密码 (示例密码: 250528，即2025年5月28日)
+      if (password === '250528') {
+        // 显示加载动画
+        loadingScreen.classList.remove('hidden');
+        
+        // 模拟加载延迟
+        setTimeout(() => {
+          passwordPage.classList.add('hidden');
+          mainPage.classList.remove('hidden');
+          loadingScreen.classList.add('hidden');
+        }, 1500);
+      } else {
+        // 密码错误效果
+        passwordInputs.forEach(input => {
+          input.classList.add('border-red-500');
+          input.classList.add('animate-shake');
+          
+          setTimeout(() => {
+            input.classList.remove('border-red-500');
+            input.classList.remove('animate-shake');
+            input.value = '';
+          }, 1000);
+        });
+        
+        passwordInputs[0].focus();
+      }
+    });
+    
+    // 返回主页面
+    resetButton.addEventListener('click', () => {
+      // 显示加载动画
+      loadingScreen.classList.remove('hidden');
+      
+      // 重置密码输入
+      passwordInputs.forEach(input => {
+        input.value = '';
+      });
+      
+      // 模拟加载延迟
+      setTimeout(() => {
+        mainPage.classList.add('hidden');
+        passwordPage.classList.remove('hidden');
+        loadingScreen.classList.add('hidden');
+        passwordInputs[0].focus();
+      }, 1000);
+    });
+    
+    // 加载故事数据
+    async function loadStoryData() {
+      try {
+        const response = await fetch('story_data.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        storyData = await response.json();
+        return storyData;
+      } catch (error) {
+        console.error('Failed to load story data:', error);
+        // 显示错误信息
+        storyContent.innerHTML = `
+          <div class="text-center py-8">
+            <i class="fa fa-exclamation-triangle text-5xl text-accent mb-4"></i>
+            <h2 class="text-2xl font-bold text-light mb-2">加载故事失败</h2>
+            <p class="text-light/70">请检查故事数据文件是否正确</p>
+            <p class="text-light/50 mt-2">错误信息: ${error.message}</p>
+          </div>
+        `;
+        return null;
       }
     }
-  }
-}
+    
+    // 选择故事
+    storyOptions.forEach(option => {
+      option.addEventListener('click', async () => {
+        const storyId = option.getAttribute('data-story');
+        
+        // 显示加载动画
+        loadingScreen.classList.remove('hidden');
+        
+        // 如果故事数据还没有加载，先加载
+        if (!storyData) {
+          await loadStoryData();
+        }
+        
+        // 重置历史
+        history = [];
+        
+        // 设置当前故事和页面
+        currentStory = storyId;
+        currentPage = storyData[currentStory].startPage;
+        
+        // 记录历史
+        history.push({story: currentStory, page: currentPage});
+        
+        // 显示故事页面
+        setTimeout(() => {
+          mainPage.classList.add('hidden');
+          storyContainer.classList.remove('hidden');
+          loadingScreen.classList.add('hidden');
+          renderStoryPage(currentStory, currentPage);
+        }, 1000);
+      });
+    });
+    
+    // 返回上一页
+    backButton.addEventListener('click', () => {
+      if (history.length > 1) {
+        // 移除当前页面
+        history.pop();
+        
+        // 获取上一页
+        const prevPage = history[history.length - 1];
+        currentStory = prevPage.story;
+        currentPage = prevPage.page;
+        
+        // 显示加载动画
+        loadingScreen.classList.remove('hidden');
+        
+        setTimeout(() => {
+          renderStoryPage(currentStory, currentPage);
+          loadingScreen.classList.add('hidden');
+        }, 500);
+      }
+    });
+    
+    // 返回主页面
+    returnMainButton.addEventListener('click', () => {
+      // 显示加载动画
+      loadingScreen.classList.remove('hidden');
+      
+      setTimeout(() => {
+        storyContainer.classList.add('hidden');
+        mainPage.classList.remove('hidden');
+        loadingScreen.classList.add('hidden');
+      }, 1000);
+    });
+    
+    // 渲染故事页面
+    function renderStoryPage(storyId, pageId) {
+      const story = storyData[storyId];
+      const page = story.pages[pageId];
+      
+      if (!page) {
+        storyContent.innerHTML = `
+          <div class="text-center py-8">
+            <i class="fa fa-exclamation-circle text-5xl text-accent mb-4"></i>
+            <h2 class="text-2xl font-bold text-light mb-2">页面不存在</h2>
+            <p class="text-light/70">故事中没有找到这个页面</p>
+          </div>
+        `;
+        return;
+      }
+      
+      // 根据页面类型渲染不同的内容
+      let content = '';
+      
+      // 页面过渡动画
+      storyContent.style.opacity = '0';
+      storyContent.style.transform = 'translateY(20px)';
+      
+      setTimeout(() => {
+        switch (page.type) {
+          case 'text':
+            content = renderTextPage(page);
+            break;
+          case 'choice':
+            content = renderChoicePage(page);
+            break;
+          case 'return':
+            content = renderReturnPage(page);
+            break;
+          default:
+            content = `
+              <div class="text-center py-8">
+                <i class="fa fa-question-circle text-5xl text-accent mb-4"></i>
+                <h2 class="text-2xl font-bold text-light mb-2">未知页面类型</h2>
+                <p class="text-light/70">页面类型: ${page.type}</p>
+              </div>
+            `;
+        }
+        
+        // 更新内容
+        storyContent.innerHTML = content;
+        
+        // 添加动画效果
+        storyContent.style.opacity = '1';
+        storyContent.style.transform = 'translateY(0)';
+        
+        // 更新导航按钮状态
+        updateNavigationButtons();
+        
+      }, 300);
+    }
+    
+    // 渲染纯文本页面
+    function renderTextPage(page) {
+      // 确保图片URL有效
+      const imageUrl = page.image ? page.image : 'https://picsum.photos/800/450?random=1';
+      
+      return `
+        <div class="animate-fade-in">
+          <img 
+            src="${imageUrl}" 
+            alt="${page.title}" 
+            class="w-full h-auto rounded-lg mb-6 shadow-lg"
+            onerror="this.src='https://picsum.photos/800/450?random=error';"
+          >
+          <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">${page.title}</h2>
+          <div class="prose prose-invert max-w-none text-light/90">
+            ${page.content}
+          </div>
+          
+          ${page.nextPage ? `
+            <div class="mt-8 text-center">
+              <button class="next-page button-style" data-next="${page.nextPage}">
+                <span>继续探索</span>
+                <i class="fa fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+    
+    // 渲染选择页面
+    function renderChoicePage(page) {
+      // 确保图片URL有效
+      const imageUrl = page.image ? page.image : 'https://picsum.photos/800/450?random=2';
+      
+      return `
+        <div class="animate-fade-in">
+          <img 
+            src="${imageUrl}" 
+            alt="${page.title}" 
+            class="w-full h-auto rounded-lg mb-6 shadow-lg"
+            onerror="this.src='https://picsum.photos/800/450?random=error';"
+          >
+          <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">${page.title}</h2>
+          <div class="prose prose-invert max-w-none text-light/90 mb-8">
+            ${page.content}
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <button class="choice-option button-style text-left" data-next="${page.choices[0].nextPage}">
+              <i class="fa fa-hand-o-right mr-2"></i> ${page.choices[0].text}
+            </button>
+            <button class="choice-option button-style text-left" data-next="${page.choices[1].nextPage}">
+              <i class="fa fa-hand-o-right mr-2"></i> ${page.choices[1].text}
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    
+    // 渲染返回页面
+    function renderReturnPage(page) {
+      // 确保图片URL有效
+      const imageUrl = page.image ? page.image : 'https://picsum.photos/800/450?random=3';
+      
+      return `
+        <div class="animate-fade-in">
+          <img 
+            src="${imageUrl}" 
+            alt="${page.title}" 
+            class="w-full h-auto rounded-lg mb-6 shadow-lg"
+            onerror="this.src='https://picsum.photos/800/450?random=error';"
+          >
+          <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">${page.title}</h2>
+          <div class="prose prose-invert max-w-none text-light/90 mb-8">
+            ${page.content}
+          </div>
+          
+          <div class="mt-8 text-center">
+            <button class="return-option button-style">
+              <i class="fa fa-home mr-2"></i> 返回主页面
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    
+    // 更新导航按钮状态
+    function updateNavigationButtons() {
+      // 显示返回按钮
+      if (history.length > 1) {
+        backButton.classList.remove('hidden');
+      } else {
+        backButton.classList.add('hidden');
+      }
+      
+      // 显示返回主页面按钮
+      returnMainButton.classList.remove('hidden');
+      
+      // 添加事件监听器
+      document.querySelectorAll('.next-page').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const nextPage = e.currentTarget.getAttribute('data-next');
+          goToNextPage(nextPage);
+        });
+      });
+      
+      document.querySelectorAll('.choice-option').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const nextPage = e.currentTarget.getAttribute('data-next');
+          goToNextPage(nextPage);
+        });
+      });
+      
+      document.querySelectorAll('.return-option').forEach(button => {
+        button.addEventListener('click', () => {
+          // 显示加载动画
+          loadingScreen.classList.remove('hidden');
+          
+          setTimeout(() => {
+            storyContainer.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+            loadingScreen.classList.add('hidden');
+          }, 1000);
+        });
+      });
+    }
+    
+    // 前往下一页
+    function goToNextPage(nextPage) {
+      // 显示加载动画
+      loadingScreen.classList.remove('hidden');
+      
+      // 更新当前页面
+      currentPage = nextPage;
+      
+      // 记录历史
+      history.push({story: currentStory, page: currentPage});
+      
+      setTimeout(() => {
+        renderStoryPage(currentStory, currentPage);
+        loadingScreen.classList.add('hidden');
+      }, 500);
+    }
+    
+    // 初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      // 为密码输入框添加焦点效果
+      passwordInputs[0].focus();
+      
+      // 初始化主题
+      initTheme();
+      
+      // 添加主题按钮事件
+      themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const theme = btn.getAttribute('data-theme');
+          applyTheme(theme);
+        });
+      });
+      
+      // 添加动画样式
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        /* 主题颜色变量 */
+        :root {
+          --primary-color: #3b82f6;
+          --secondary-color: #1e40af;
+          --accent-color: #f97316;
+          --dark-color: #0f172a;
+          --light-color: #f8fafc;
+        }
+        /* 应用主题颜色 */
+        .bg-primary { background-color: var(--primary-color) !important; }
+        .bg-secondary { background-color: var(--secondary-color) !important; }
+        .bg-accent { background-color: var(--accent-color) !important; }
+        .bg-dark { background-color: var(--dark-color) !important; }
+        .bg-light { background-color: var(--light-color) !important; }
+        
+        .text-primary { color: var(--primary-color) !important; }
+        .text-secondary { color: var(--secondary-color) !important; }
+        .text-accent { color: var(--accent-color) !important; }
+        .text-dark { color: var(--dark-color) !important; }
+        .text-light { color: var(--light-color) !important; }
+        
+        .border-primary { border-color: var(--primary-color) !important; }
+        .border-secondary { border-color: var(--secondary-color) !important; }
+        .border-accent { border-color: var(--accent-color) !important; }
+        .border-dark { border-color: var(--dark-color) !important; }
+        .border-light { border-color: var(--light-color) !important; }
+        
+        .focus:ring-accent:focus { ring-color: var(--accent-color) !important; }
+      `;
+      document.head.appendChild(style);
+      
+      // 添加全局错误处理
+      window.onerror = function(message, source, lineno, colno, error) {
+        console.error('Global error:', message, source, lineno, colno, error);
+        return true; // 阻止默认行为
+      };
+    });
+  </script>
+</body>
+</html>
   
