@@ -1,76 +1,545 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: #f8f9fa;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            padding: 20px;
-            line-height: 1.6;
-        }
-
-        .content {
-            max-width: 600px;
-            text-align: center;
-            color: #333;
-        }
-
-        .text-line {
-            margin: 1.2rem 0;
-            font-size: 1.1rem;
-            opacity: 0;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .text-line:nth-child(1) { animation-delay: 0.2s; }
-        .text-line:nth-child(2) { animation-delay: 0.4s; }
-        .text-line:nth-child(3) { animation-delay: 0.6s; }
-        .text-line:nth-child(4) { animation-delay: 0.8s; }
-        .text-line:nth-child(5) { animation-delay: 1.0s; }
-        .text-line:nth-child(6) { animation-delay: 1.2s; }
-        .text-line:nth-child(7) { animation-delay: 1.4s; }
-
-        @media (max-width: 480px) {
-            .text-line {
-                font-size: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>故事解密平台</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3b82f6',
+            secondary: '#1e40af',
+            accent: '#f97316',
+            dark: '#0f172a',
+            light: '#f8fafc'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif']
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .bg-blur {
+        backdrop-filter: blur(8px);
+      }
+      .transition-transform {
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+      .scale-hover {
+        @apply hover:scale-105 transition-all duration-300;
+      }
+      .button-style {
+        @apply bg-primary hover:bg-secondary text-white font-bold py-4 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-opacity-50;
+      }
+      .story-card {
+        @apply bg-white/90 backdrop-blur-sm rounded-xl shadow-xl p-6 transition-all duration-500 transform hover:shadow-2xl;
+      }
+    }
+  </style>
 </head>
-<body>
-    <div class="content">
-        <div class="text-line">hello there</div>
-        <div class="text-line">I'm glad that you notice my website,</div>
-        <div class="text-line">but I'm sorry that it isn't available now........</div>
-        <div class="text-line">(actually I haven't completely prepared it)</div>
-        <div class="text-line">whatever, it's my pleasure that you can visit my website,</div>
-        <div class="text-line">I hope you can come back and take a look after a while. (really)</div>
-        <div class="text-line">maybe it'll be ready by then.</div>
+<body class="bg-gradient-to-br from-dark to-secondary min-h-screen font-sans text-light overflow-x-hidden">
+  <!-- 加载页面 -->
+  <div id="loading-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-dark/95">
+    <div class="text-center">
+      <div class="inline-block h-16 w-16 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+      <p class="mt-4 text-xl text-light">加载中...</p>
     </div>
+  </div>
+
+  <!-- 密码输入页面 -->
+  <div id="password-page" class="min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-dark/70 backdrop-blur-md rounded-2xl p-8 shadow-2xl border border-primary/20">
+      <div class="text-center mb-8">
+        <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold text-primary mb-2 text-shadow">故事解密</h1>
+        <p class="text-light/80">输入六位数字密码进入</p>
+      </div>
+      
+      <form id="password-form" class="space-y-6">
+        <div class="grid grid-cols-6 gap-4">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="0">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="1">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="2">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="3">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="4">
+          <input type="text" maxlength="1" class="password-input bg-dark/50 border-b-2 border-primary text-center text-2xl h-16 rounded focus:outline-none focus:border-accent transition-all" data-index="5">
+        </div>
+        
+        <button type="submit" class="button-style w-full flex justify-center items-center">
+          <span>进入故事</span>
+          <i class="fa fa-arrow-right ml-2"></i>
+        </button>
+      </form>
+      
+      <div class="mt-8 text-center text-light/60 text-sm">
+        <p>提示：密码与今天的日期有关</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 一级页面 -->
+  <div id="main-page" class="min-h-screen flex flex-col items-center justify-center p-4 hidden">
+    <div class="max-w-6xl w-full text-center mb-12">
+      <h1 class="text-[clamp(2.5rem,6vw,4rem)] font-bold text-primary mb-4 text-shadow animate-pulse">选择你的故事</h1>
+      <p class="text-light/80 text-lg max-w-3xl mx-auto">你面前有四个方向，每个方向都有一个独特的故事等待你去探索。选择一个方向开始你的冒险吧。</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl w-full">
+      <button class="story-option button-style flex flex-col items-center" data-story="1">
+        <i class="fa fa-book text-4xl mb-4"></i>
+        <span class="text-xl">古代传说</span>
+      </button>
+      
+      <button class="story-option button-style flex flex-col items-center" data-story="2">
+        <i class="fa fa-rocket text-4xl mb-4"></i>
+        <span class="text-xl">未来科技</span>
+      </button>
+      
+      <button class="story-option button-style flex flex-col items-center" data-story="3">
+        <i class="fa fa-tree text-4xl mb-4"></i>
+        <span class="text-xl">自然奥秘</span>
+      </button>
+      
+      <button class="story-option button-style flex flex-col items-center" data-story="4">
+        <i class="fa fa-users text-4xl mb-4"></i>
+        <span class="text-xl">人文历史</span>
+      </button>
+    </div>
+    
+    <div class="mt-12">
+      <button id="reset-button" class="bg-dark/50 hover:bg-dark/70 text-light border border-light/30 py-3 px-6 rounded-lg transition-all duration-300">
+        <i class="fa fa-refresh mr-2"></i>重新输入密码
+      </button>
+    </div>
+  </div>
+
+  <!-- 故事页面容器 -->
+  <div id="story-container" class="min-h-screen flex items-center justify-center p-4 hidden">
+    <div class="max-w-4xl w-full">
+      <div id="story-content" class="story-card">
+        <!-- 故事内容将通过JavaScript动态加载 -->
+      </div>
+      
+      <div class="mt-8 flex justify-between">
+        <button id="back-button" class="bg-dark/50 hover:bg-dark/70 text-light border border-light/30 py-3 px-6 rounded-lg transition-all duration-300 hidden">
+          <i class="fa fa-arrow-left mr-2"></i>返回上一页
+        </button>
+        
+        <button id="return-main-button" class="bg-dark/50 hover:bg-dark/70 text-light border border-light/30 py-3 px-6 rounded-lg transition-all duration-300 hidden">
+          <i class="fa fa-home mr-2"></i>返回主页面
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 全局变量
+    let currentStory = null;
+    let currentPage = null;
+    let storyData = null;
+    let history = [];
+    
+    // DOM元素
+    const loadingScreen = document.getElementById('loading-screen');
+    const passwordPage = document.getElementById('password-page');
+    const mainPage = document.getElementById('main-page');
+    const storyContainer = document.getElementById('story-container');
+    const storyContent = document.getElementById('story-content');
+    const passwordForm = document.getElementById('password-form');
+    const passwordInputs = document.querySelectorAll('.password-input');
+    const storyOptions = document.querySelectorAll('.story-option');
+    const resetButton = document.getElementById('reset-button');
+    const backButton = document.getElementById('back-button');
+    const returnMainButton = document.getElementById('return-main-button');
+    
+    // 密码验证
+    passwordInputs.forEach((input, index) => {
+      input.addEventListener('input', (e) => {
+        // 只允许数字输入
+        if (!/^\d$/.test(e.data) && e.data !== null) {
+          input.value = '';
+          return;
+        }
+        
+        // 自动跳到下一个输入框
+        if (input.value && index < passwordInputs.length - 1) {
+          passwordInputs[index + 1].focus();
+        }
+      });
+      
+      // 处理退格键
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value === '' && index > 0) {
+          passwordInputs[index - 1].focus();
+        }
+      });
+    });
+    
+    passwordForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // 获取输入的密码
+      const password = Array.from(passwordInputs)
+        .map(input => input.value)
+        .join('');
+      
+      // 验证密码 (示例密码: 250528，即2025年5月28日)
+      if (password === '250528') {
+        // 显示加载动画
+        loadingScreen.classList.remove('hidden');
+        
+        // 模拟加载延迟
+        setTimeout(() => {
+          passwordPage.classList.add('hidden');
+          mainPage.classList.remove('hidden');
+          loadingScreen.classList.add('hidden');
+        }, 1500);
+      } else {
+        // 密码错误效果
+        passwordInputs.forEach(input => {
+          input.classList.add('border-red-500');
+          input.classList.add('animate-shake');
+          
+          setTimeout(() => {
+            input.classList.remove('border-red-500');
+            input.classList.remove('animate-shake');
+            input.value = '';
+          }, 1000);
+        });
+        
+        passwordInputs[0].focus();
+      }
+    });
+    
+    // 返回主页面
+    resetButton.addEventListener('click', () => {
+      // 显示加载动画
+      loadingScreen.classList.remove('hidden');
+      
+      // 重置密码输入
+      passwordInputs.forEach(input => {
+        input.value = '';
+      });
+      
+      // 模拟加载延迟
+      setTimeout(() => {
+        mainPage.classList.add('hidden');
+        passwordPage.classList.remove('hidden');
+        loadingScreen.classList.add('hidden');
+        passwordInputs[0].focus();
+      }, 1000);
+    });
+    
+    // 加载故事数据
+    async function loadStoryData() {
+      try {
+        const response = await fetch('story_data.json');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        storyData = await response.json();
+        return storyData;
+      } catch (error) {
+        console.error('Failed to load story data:', error);
+        // 显示错误信息
+        storyContent.innerHTML = `
+          <div class="text-center py-8">
+            <i class="fa fa-exclamation-triangle text-5xl text-accent mb-4"></i>
+            <h2 class="text-2xl font-bold text-light mb-2">加载故事失败</h2>
+            <p class="text-light/70">请检查故事数据文件是否正确</p>
+            <p class="text-light/50 mt-2">错误信息: ${error.message}</p>
+          </div>
+        `;
+        return null;
+      }
+    }
+    
+    // 选择故事
+    storyOptions.forEach(option => {
+      option.addEventListener('click', async () => {
+        const storyId = option.getAttribute('data-story');
+        
+        // 显示加载动画
+        loadingScreen.classList.remove('hidden');
+        
+        // 如果故事数据还没有加载，先加载
+        if (!storyData) {
+          await loadStoryData();
+        }
+        
+        // 重置历史
+        history = [];
+        
+        // 设置当前故事和页面
+        currentStory = storyId;
+        currentPage = storyData[currentStory].startPage;
+        
+        // 记录历史
+        history.push({story: currentStory, page: currentPage});
+        
+        // 显示故事页面
+        setTimeout(() => {
+          mainPage.classList.add('hidden');
+          storyContainer.classList.remove('hidden');
+          loadingScreen.classList.add('hidden');
+          renderStoryPage(currentStory, currentPage);
+        }, 1000);
+      });
+    });
+    
+    // 返回上一页
+    backButton.addEventListener('click', () => {
+      if (history.length > 1) {
+        // 移除当前页面
+        history.pop();
+        
+        // 获取上一页
+        const prevPage = history[history.length - 1];
+        currentStory = prevPage.story;
+        currentPage = prevPage.page;
+        
+        // 显示加载动画
+        loadingScreen.classList.remove('hidden');
+        
+        setTimeout(() => {
+          renderStoryPage(currentStory, currentPage);
+          loadingScreen.classList.add('hidden');
+        }, 500);
+      }
+    });
+    
+    // 返回主页面
+    returnMainButton.addEventListener('click', () => {
+      // 显示加载动画
+      loadingScreen.classList.remove('hidden');
+      
+      setTimeout(() => {
+        storyContainer.classList.add('hidden');
+        mainPage.classList.remove('hidden');
+        loadingScreen.classList.add('hidden');
+      }, 1000);
+    });
+    
+    // 渲染故事页面
+    function renderStoryPage(storyId, pageId) {
+      const story = storyData[storyId];
+      const page = story.pages[pageId];
+      
+      if (!page) {
+        storyContent.innerHTML = `
+          <div class="text-center py-8">
+            <i class="fa fa-exclamation-circle text-5xl text-accent mb-4"></i>
+            <h2 class="text-2xl font-bold text-light mb-2">页面不存在</h2>
+            <p class="text-light/70">故事中没有找到这个页面</p>
+          </div>
+        `;
+        return;
+      }
+      
+      // 根据页面类型渲染不同的内容
+      let content = '';
+      
+      // 页面过渡动画
+      storyContent.style.opacity = '0';
+      storyContent.style.transform = 'translateY(20px)';
+      
+      setTimeout(() => {
+        switch (page.type) {
+          case 'text':
+            content = renderTextPage(page);
+            break;
+          case 'choice':
+            content = renderChoicePage(page);
+            break;
+          case 'return':
+            content = renderReturnPage(page);
+            break;
+          default:
+            content = `
+              <div class="text-center py-8">
+                <i class="fa fa-question-circle text-5xl text-accent mb-4"></i>
+                <h2 class="text-2xl font-bold text-light mb-2">未知页面类型</h2>
+                <p class="text-light/70">页面类型: ${page.type}</p>
+              </div>
+            `;
+        }
+        
+        // 更新内容
+        storyContent.innerHTML = content;
+        
+        // 添加动画效果
+        storyContent.style.opacity = '1';
+        storyContent.style.transform = 'translateY(0)';
+        
+        // 更新导航按钮状态
+        updateNavigationButtons();
+        
+      }, 300);
+    }
+    
+    // 渲染纯文本页面
+    function renderTextPage(page) {
+      return `
+        <div class="animate-fade-in">
+          ${page.image ? `<img src="${page.image}" alt="${page.title}" class="w-full h-auto rounded-lg mb-6 shadow-lg">` : ''}
+          <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">${page.title}</h2>
+          <div class="prose prose-invert max-w-none text-light/90">
+            ${page.content}
+          </div>
+          
+          ${page.nextPage ? `
+            <div class="mt-8 text-center">
+              <button class="next-page button-style" data-next="${page.nextPage}">
+                <span>继续探索</span>
+                <i class="fa fa-arrow-right ml-2"></i>
+              </button>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }
+    
+    // 渲染选择页面
+    function renderChoicePage(page) {
+      return `
+        <div class="animate-fade-in">
+          ${page.image ? `<img src="${page.image}" alt="${page.title}" class="w-full h-auto rounded-lg mb-6 shadow-lg">` : ''}
+          <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">${page.title}</h2>
+          <div class="prose prose-invert max-w-none text-light/90 mb-8">
+            ${page.content}
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <button class="choice-option button-style text-left" data-next="${page.choices[0].nextPage}">
+              <i class="fa fa-hand-o-right mr-2"></i> ${page.choices[0].text}
+            </button>
+            <button class="choice-option button-style text-left" data-next="${page.choices[1].nextPage}">
+              <i class="fa fa-hand-o-right mr-2"></i> ${page.choices[1].text}
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    
+    // 渲染返回页面
+    function renderReturnPage(page) {
+      return `
+        <div class="animate-fade-in">
+          ${page.image ? `<img src="${page.image}" alt="${page.title}" class="w-full h-auto rounded-lg mb-6 shadow-lg">` : ''}
+          <h2 class="text-2xl md:text-3xl font-bold text-primary mb-4">${page.title}</h2>
+          <div class="prose prose-invert max-w-none text-light/90 mb-8">
+            ${page.content}
+          </div>
+          
+          <div class="mt-8 text-center">
+            <button class="return-option button-style">
+              <i class="fa fa-home mr-2"></i> 返回主页面
+            </button>
+          </div>
+        </div>
+      `;
+    }
+    
+    // 更新导航按钮状态
+    function updateNavigationButtons() {
+      // 显示返回按钮
+      if (history.length > 1) {
+        backButton.classList.remove('hidden');
+      } else {
+        backButton.classList.add('hidden');
+      }
+      
+      // 显示返回主页面按钮
+      returnMainButton.classList.remove('hidden');
+      
+      // 添加事件监听器
+      document.querySelectorAll('.next-page').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const nextPage = e.currentTarget.getAttribute('data-next');
+          goToNextPage(nextPage);
+        });
+      });
+      
+      document.querySelectorAll('.choice-option').forEach(button => {
+        button.addEventListener('click', (e) => {
+          const nextPage = e.currentTarget.getAttribute('data-next');
+          goToNextPage(nextPage);
+        });
+      });
+      
+      document.querySelectorAll('.return-option').forEach(button => {
+        button.addEventListener('click', () => {
+          // 显示加载动画
+          loadingScreen.classList.remove('hidden');
+          
+          setTimeout(() => {
+            storyContainer.classList.add('hidden');
+            mainPage.classList.remove('hidden');
+            loadingScreen.classList.add('hidden');
+          }, 1000);
+        });
+      });
+    }
+    
+    // 前往下一页
+    function goToNextPage(nextPage) {
+      // 显示加载动画
+      loadingScreen.classList.remove('hidden');
+      
+      // 更新当前页面
+      currentPage = nextPage;
+      
+      // 记录历史
+      history.push({story: currentStory, page: currentPage});
+      
+      setTimeout(() => {
+        renderStoryPage(currentStory, currentPage);
+        loadingScreen.classList.add('hidden');
+      }, 500);
+    }
+    
+    // 初始化
+    document.addEventListener('DOMContentLoaded', () => {
+      // 为密码输入框添加焦点效果
+      passwordInputs[0].focus();
+      
+      // 添加动画样式
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+          20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        .animate-shake {
+          animation: shake 0.5s ease-in-out;
+        }
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `;
+      document.head.appendChild(style);
+    });
+  </script>
 </body>
 </html>
+  
